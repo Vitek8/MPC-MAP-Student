@@ -80,8 +80,8 @@ end
 clear ax ay cx cy i xs ys pgon start_position;
 
 w = waitforbuttonpress;
-public_vars.h2 = figure;
-public_vars.get_target_index = 1;
+% public_vars.h2 = figure;
+delete algorithms\report\assignment_2\data\index.mat
 
 while true
     % 1. Check if goal has been reached
