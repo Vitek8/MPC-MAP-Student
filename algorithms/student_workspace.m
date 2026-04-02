@@ -14,11 +14,12 @@ n = 100;
 x = linspace(start_pos_x, goal_pos_x, n);
 y = linspace(start_pos_y, goal_pos_y, n);
 
-freq = 0.25;
-sine_amplitude = 8;
-sine_count = 7;
-sine_x = start_pos_x + 2 * pi * freq * linspace(0, sine_count, sine_count * 10000)';
-sine_y = start_pos_y + sine_amplitude * sin(sine_x - start_pos_x);
+freq = 0.05;
+sine_amplitude = 5;
+sine_count = 1;
+
+t = start_pos_x + linspace(0, sine_count / freq, 100000)';
+sine_y = start_pos_y + sine_amplitude * sin(2 * pi * freq * (t - start_pos_x));
 
 circular_arc_angles = linspace(pi, 0, 1000);
 radius = pi * freq * sine_count;
@@ -27,11 +28,11 @@ circular_arc_y = start_pos_y + radius * sin(circular_arc_angles)';
 
 straight_line = [x' y'];
 circular_arc = [circular_arc_x circular_arc_y];
-sine_wave = [sine_x sine_y];
+sine_wave = [t sine_y];
 
 public_vars.path = sine_wave;
 
-calculated_start_x = goal_pos_x - 2 * pi * freq * sine_count;
+calculated_start_x = goal_pos_x - 1/freq * sine_count;
 calculated_start_y = goal_pos_y;
 fprintf("Nastav počátek na: [%f %f]\n", calculated_start_x, calculated_start_y);
 
