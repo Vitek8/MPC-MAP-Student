@@ -80,10 +80,10 @@ end
 clear ax ay cx cy i xs ys pgon start_position;
 
 w = waitforbuttonpress;
-% public_vars.h2 = figure;
-% delete algorithms\report\assignment_2\data\index.mat
+
 
 while true
+    
     % 1. Check if goal has been reached
     if is_in_goal(private_vars, read_only_vars)
         disp('You WIN! GG!!!')
@@ -91,10 +91,10 @@ while true
     end
     
     % 2. Check collision
-    % if is_in_wall(private_vars, read_only_vars)
-    %     disp('Game Over. You crashed into a wall. Try it again.');
-    %     break;
-    % end
+    if is_in_wall(private_vars, read_only_vars)
+        disp('Game Over. You crashed into a wall. Try it again.');
+        break;
+    end
     
     % 3. Check presence in the arena
     if is_out(private_vars, read_only_vars)
@@ -134,4 +134,5 @@ while true
     
     % 16. Increment counter
     read_only_vars.counter = read_only_vars.counter + 1;
+   
 end
