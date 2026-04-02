@@ -14,7 +14,7 @@ n = 100;
 x = linspace(start_pos_x, goal_pos_x, n);
 y = linspace(start_pos_y, goal_pos_y, n);
 
-freq = 0.5;
+freq = 0.25;
 sine_amplitude = 8;
 sine_count = 7;
 sine_x = start_pos_x + 2 * pi * freq * linspace(0, sine_count, sine_count * 10000)';

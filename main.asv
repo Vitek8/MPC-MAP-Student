@@ -81,8 +81,6 @@ clear ax ay cx cy i xs ys pgon start_position;
 
 w = waitforbuttonpress;
 public_vars.h2 = figure;
-public_vars.get_target_index = 1;
-disp("pokus");
 
 while true
     % 1. Check if goal has been reached
@@ -136,3 +134,6 @@ while true
     % 16. Increment counter
     read_only_vars.counter = read_only_vars.counter + 1;
 end
+
+
+del
