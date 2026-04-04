@@ -80,7 +80,8 @@ end
 clear ax ay cx cy i xs ys pgon start_position;
 
 w = waitforbuttonpress;
-
+% delete /media/vitek/Games/Škola/VUT/VUT/předměty/MPC_MAP/MPC-MAP-Student/algorithms/report/assignment_2/data/index.mat
+% delete /media/vitek/Games/Škola/VUT/VUT/předměty/MPC_MAP/MPC-MAP-Student/algorithms/report/assignment_2/data/angle.mat
 
 while true
     
