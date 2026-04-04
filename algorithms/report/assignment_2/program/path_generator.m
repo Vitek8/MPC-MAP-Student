@@ -2,9 +2,9 @@ close all;
 clear;
 clc;
 
-load("/media/vitek/Games/Škola/VUT/VUT/předměty/MPC_MAP/MPC-MAP-Student/algorithms/report/assignment_2/data/angle (copy).mat", 'arr_theta', 'arr_angle_error', 'arr_est_pos', 'arr_distance_error');
+load("../data/look_ahead_3.mat", 'arr_theta', 'arr_angle_error', 'arr_est_pos', 'arr_distance_error');
 look_ahead_3 = arr_est_pos;
-load("/media/vitek/Games/Škola/VUT/VUT/předměty/MPC_MAP/MPC-MAP-Student/algorithms/report/assignment_2/data/angle.mat", 'arr_theta', 'arr_angle_error', 'arr_est_pos', 'arr_distance_error');
+load("../data/look_ahead_1.mat", 'arr_theta', 'arr_angle_error', 'arr_est_pos', 'arr_distance_error');
 look_ahead_1 = arr_est_pos;
 goal_position = [25,10];
 start_position = [5 10 0];
