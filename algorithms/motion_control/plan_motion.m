@@ -10,8 +10,7 @@ public_vars.motion_vector = [0, 0];
 
 
 % II. Compute motion vector
-dt = 0.05; % estimovaná (změřená) časová konstanta simulátoru
-wheel_radius = 2;
+Kp = 5; 
 wheel_distance = 0.8;
 file = "algorithms\report\assignment_2\data\angle.mat";
 
@@ -31,31 +30,35 @@ if abs(angle_error) < 5
     angle_error = 0;
 end
 
-omega = angle_error * dt;
-omega_rad = deg2rad(omega);
+omega_rad = deg2rad(angle_error);
+omega_setpoint = Kp * omega_rad;
 v = sqrt(dx^2 + dy^2);
 
-
-v_left = (2 * v - omega * wheel_distance)/(2 * wheel_radius);
-v_right = (2 * v + omega * wheel_distance) / (2 * wheel_radius);
+v_left = v - (omega_setpoint * wheel_distance)/ 2;
+v_right = v + (omega_setpoint * wheel_distance) / 2;
 public_vars.motion_vector = [v_right, v_left];
 
 %% DEBUG
 % if exist(file, 'file')
-%     load(file, 'arr_theta', 'arr_angle_error');
+%     load(file, 'arr_theta', 'arr_angle_error', 'arr_est_pos', 'arr_distance_error');
 % else
 %     arr_theta = [];
 %     arr_angle_error = [];
+%     arr_distance_error = [];
+%     arr_est_pos = [];
+%
 % end
-% 
+%
 % arr_theta(read_only_vars.counter) = theta;
 % arr_angle_error(read_only_vars.counter) = angle_error;
-% 
-% 
-% save(file, 'arr_theta', 'arr_angle_error');
-% 
+% arr_distance_error(read_only_vars.counter) = v;
+% arr_est_pos(:,read_only_vars.counter) = est_pos(:);
+%
+%
+% save(file, 'arr_theta', 'arr_angle_error', 'arr_est_pos', 'arr_distance_error');
+%
 % fprintf("angle_est: %f, target_angle: %f, angle_error: %f\n", theta, target_angle, angle_error);
-% 
+%
 % figure(public_vars.h2) 
 % hold on
 % plot(read_only_vars.counter,theta, 'ro')
