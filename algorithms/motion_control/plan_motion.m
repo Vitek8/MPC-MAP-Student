@@ -2,7 +2,7 @@ function [public_vars] = plan_motion(read_only_vars, public_vars)
 %PLAN_MOTION Summary of this function goes here
 
 % I. Pick navigation target
-lookahead = 2;
+lookahead = 1;
 target = get_target(read_only_vars.mocap_pose, public_vars.path, lookahead);
 plot(target(1), target(2), 'bo', 'MarkerSize',8, 'MarkerFaceColor','b')
 public_vars.motion_vector = [0, 0];
@@ -39,23 +39,23 @@ v_right = v + (omega_setpoint * wheel_distance) / 2;
 public_vars.motion_vector = [v_right, v_left];
 
 %% DEBUG
-% if exist(file, 'file')
-%     load(file, 'arr_theta', 'arr_angle_error', 'arr_est_pos', 'arr_distance_error');
-% else
-%     arr_theta = [];
-%     arr_angle_error = [];
-%     arr_distance_error = [];
-%     arr_est_pos = [];
-%
-% end
-%
-% arr_theta(read_only_vars.counter) = theta;
-% arr_angle_error(read_only_vars.counter) = angle_error;
-% arr_distance_error(read_only_vars.counter) = v;
-% arr_est_pos(:,read_only_vars.counter) = est_pos(:);
-%
-%
-% save(file, 'arr_theta', 'arr_angle_error', 'arr_est_pos', 'arr_distance_error');
+if exist(file, 'file')
+    load(file, 'arr_theta', 'arr_angle_error', 'arr_est_pos', 'arr_distance_error');
+else
+    arr_theta = [];
+    arr_angle_error = [];
+    arr_distance_error = [];
+    arr_est_pos = [];
+
+end
+
+arr_theta(read_only_vars.counter) = theta;
+arr_angle_error(read_only_vars.counter) = angle_error;
+arr_distance_error(read_only_vars.counter) = v;
+arr_est_pos(:,read_only_vars.counter) = est_pos(:);
+
+
+save(file, 'arr_theta', 'arr_angle_error', 'arr_est_pos', 'arr_distance_error');
 %
 % fprintf("angle_est: %f, target_angle: %f, angle_error: %f\n", theta, target_angle, angle_error);
 %
