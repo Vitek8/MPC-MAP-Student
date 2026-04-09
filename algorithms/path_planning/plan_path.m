@@ -10,7 +10,8 @@ if planning_required
     path = smooth_path(path);
     
 else
-    
+    [straight_line,sine_wave,circular_arc] = plan_simple_trajectory(read_only_vars, public_vars);
+    public_vars.path = sine_wave;
     path = public_vars.path;
     
 end
