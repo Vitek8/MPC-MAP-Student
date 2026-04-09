@@ -3,5 +3,8 @@ function [measurement] = compute_lidar_measurement(map, pose, lidar_config)
 
 measurement = zeros(1, length(lidar_config));
 
+ray_cast(pose, map, lidar_config)
+
+
 end
 

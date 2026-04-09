@@ -36,5 +36,5 @@ end
     sine_wave = [t sine_y];
     
     calculated_start = [goal_position(1) - 1/freq * sine_count goal_position(2)];
-    fprintf("Nastav počátek na: [%.2f m %.2f m]\n", calculated_start);
+    % fprintf("Nastav počátek na: [%.2f m %.2f m]\n", calculated_start);
 end
