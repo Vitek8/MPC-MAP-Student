@@ -1,11 +1,6 @@
 function [public_vars] = student_workspace(read_only_vars,public_vars)
 %STUDENT_WORKSPACE Summary of this function goes here
 
-
-
-
-% fprintf("odometrie: [%.2f m %.2f m %.2f °] a motion vector: [%.2f m/s %.2f m/s]\n", new_pose(1:2), rad2deg(new_pose(3)), public_vars.motion_vector);
-
 % 8. Perform initialization procedure
 if (read_only_vars.counter == 1)
           
@@ -14,24 +9,8 @@ if (read_only_vars.counter == 1)
 
 end
 
-new_pose = predict_pose(public_vars.particles, public_vars.motion_vector, read_only_vars);
-
-
-x = new_pose(:, 1);
-y = new_pose(:, 2);
-theta = new_pose(:, 3);
-
-L = 1; % délka šipky
-
-dx = L * cos(theta);
-dy = L * sin(theta);
-
-hold on;
-plot(x, y, 'ro', 'MarkerSize',1, 'MarkerFaceColor','r')
-quiver(x, y, dx, dy, 0, 'r', 'LineWidth', 0.1);
-
 % 9. Update particle filter
-public_vars.particles = update_particle_filter(read_only_vars, public_vars)
+public_vars.particles = update_particle_filter(read_only_vars, public_vars);
 
 % 10. Update Kalman filter
 [public_vars.mu, public_vars.sigma] = update_kalman_filter(read_only_vars, public_vars);
@@ -44,7 +23,5 @@ public_vars.path = plan_path(read_only_vars, public_vars);
 
 % 13. Plan next motion command
 public_vars = plan_motion(read_only_vars, public_vars);
-
-
 
 end
