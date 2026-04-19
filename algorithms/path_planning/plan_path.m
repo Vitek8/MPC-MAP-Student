@@ -9,8 +9,11 @@ if planning_required
     path = smooth_path(path);
     
 else
-    [straight_line,sine_wave,circular_arc] = plan_simple_trajectory(read_only_vars, public_vars);
-    public_vars.path = straight_line;
+    
+    [straight_line,sine_wave,circular_arc,combined] = plan_simple_trajectory(read_only_vars, public_vars);
+    trajectories = {straight_line, sine_wave, circular_arc, combined};
+    public_vars.path = trajectories{public_vars.path_type};
+    
     path = public_vars.path;
     
 end
