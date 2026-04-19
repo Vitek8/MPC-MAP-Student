@@ -1,11 +1,10 @@
-function [new_pose] = predict_pose(old_pose, motion_vector, read_only_vars)
+function [new_pose] = predict_pose(old_pose, motion_vector, read_only_vars, sigma)
 %PREDICT_POSE Summary of this function goes here
-
-sigma = 1;
-
+                   
 motion_vector = motion_vector + motion_vector .* (sigma * randn(2,1));
 wheel_distance = read_only_vars.agent_drive.interwheel_dist;
 dt = read_only_vars.sampling_period;
+
 
 v = (motion_vector(1) + motion_vector(2)) / 2;
 omega = (motion_vector(1) - motion_vector(2)) / wheel_distance;

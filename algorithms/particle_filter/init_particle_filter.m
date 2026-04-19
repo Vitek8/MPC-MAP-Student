@@ -13,5 +13,8 @@ public_vars.particles(:, 1) = rand(N,1) * (map_x2 - map_x1) + map_x1;
 public_vars.particles(:, 2) = rand(N,1) * (map_y2 - map_y1) + map_y1;
 public_vars.particles(:, 3) = rand(N,1) * 2*pi;
 
+public_vars.motion_sigma = 1;
+public_vars.sensor_sigma = 3;
+
 end
 
