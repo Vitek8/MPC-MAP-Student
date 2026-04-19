@@ -82,9 +82,7 @@ clear ax ay cx cy i xs ys pgon start_position;
 w = waitforbuttonpress;
 delete algorithms\report\assignment_2\data\index.mat
 delete algorithms\report\assignment_2\data\angle.mat
-public_vars.old_pose = [5, 10, 0];
 
-tic
 while true
     
     % 1. Check if goal has been reached
@@ -94,10 +92,10 @@ while true
     end
     
     % 2. Check collision
-    % if is_in_wall(private_vars, read_only_vars)
-    %     disp('Game Over. You crashed into a wall. Try it again.');
-    %     break;
-    % end
+    if is_in_wall(private_vars, read_only_vars)
+        disp('Game Over. You crashed into a wall. Try it again.');
+        break;
+    end
     
     % 3. Check presence in the arena
     if is_out(private_vars, read_only_vars)
@@ -139,4 +137,3 @@ while true
     read_only_vars.counter = read_only_vars.counter + 1;
    
 end
-toc
