@@ -12,7 +12,7 @@ if size(target) > 0
     
     % II. Compute motion vector
     Kp = 5; 
-    wheel_distance = 0.8;
+    wheel_distance = read_only_vars.agent_drive.interwheel_dist;
     file = "algorithms\report\assignment_2\data\angle.mat";
     
     est_pos = read_only_vars.mocap_pose;
