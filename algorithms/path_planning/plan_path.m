@@ -11,8 +11,8 @@ if planning_required
 else
     
     [straight_line,sine_wave,circular_arc,combined] = plan_simple_trajectory(read_only_vars, public_vars);
-    trajectories = {straight_line, sine_wave, circular_arc, combined};
-    public_vars.path = trajectories{public_vars.path_type};
+    trajectories = {[], straight_line, sine_wave, circular_arc, combined};
+    public_vars.path = trajectories{public_vars.path_type + 1};
     
     path = public_vars.path;
     

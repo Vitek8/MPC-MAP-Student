@@ -17,6 +17,7 @@ public_vars.particles = update_particle_filter(read_only_vars, public_vars);
 
 % 11. Estimate current robot position
 public_vars.estimated_pose = estimate_pose(public_vars); % (x,y,theta)
+public_vars.estimated_pose1 = public_vars.particles;
 
 % 12. Path planning
 public_vars.path = plan_path(read_only_vars, public_vars);
