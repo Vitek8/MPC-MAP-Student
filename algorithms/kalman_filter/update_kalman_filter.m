@@ -19,5 +19,7 @@ z = read_only_vars.gnss_position';
 [mu, sigma] = kf_measure(mu, sigma, z, public_vars.kf);
 public_vars.kalman_pose = mu;
 
+plot(mu(1), mu(2), 'b', 'LineWidth', 2);
+
 end
 
