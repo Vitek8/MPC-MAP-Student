@@ -3,26 +3,26 @@ function [public_vars] = student_workspace(read_only_vars,public_vars)
 
 gnss_count = 100;
 gnss_tmp = gnss_count + 1;
-public_vars.motion_vector = [0, 0];
 
-if read_only_vars.counter < gnss_tmp
+if read_only_vars.counter == 1
 
-    public_vars.gnss_data(read_only_vars.counter, :) = read_only_vars.gnss_position;
+    public_vars.path = plan_path(read_only_vars, public_vars);
+
+elseif read_only_vars.counter < gnss_tmp
+
+    public_vars.motion_vector = [0, 0];
 
 elseif read_only_vars.counter == gnss_tmp
 
-    gnss  = public_vars.gnss_data  - mean(read_only_vars.gnss_history);
+    gnss  = read_only_vars.gnss_history - mean(read_only_vars.gnss_history);
     public_vars.gnss_sigma = std(gnss);
     public_vars.gnss_covariance = cov(gnss);
     public_vars = init_kalman_filter(read_only_vars, public_vars);
 
-elseif read_only_vars.counter < gnss_tmp * 4
+else
 
-    public_vars.motion_vector = [0.4, 0.4];
-
-if read_only_vars.counter > gnss_tmp
     [public_vars.mu, public_vars.sigma] = update_kalman_filter(read_only_vars, public_vars);
     public_vars.estimated_pose = estimate_pose(public_vars);
-end
+    public_vars = plan_motion(read_only_vars, public_vars);
 
 end
