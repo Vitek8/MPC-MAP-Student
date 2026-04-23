@@ -15,12 +15,6 @@ for i=1:size(particles, 1)
 end
 weights = weight_particles(measurements, read_only_vars.lidar_distances, public_vars.sensor_sigma);
 
-[~, index] = min(weights);
-plot(particles(index,1), particles(index,2), 'go', 'LineWidth', 2);
-
-% particle_pose = compute_lidar_measurement(read_only_vars.map, particles(index, :), read_only_vars.lidar_config)
-% lidar_pose = read_only_vars.lidar_distances
-
 % III. Resampling
 particles = resample_particles(particles, weights);
 

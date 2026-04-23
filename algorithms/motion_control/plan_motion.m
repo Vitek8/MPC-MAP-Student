@@ -2,10 +2,10 @@ function [public_vars] = plan_motion(read_only_vars, public_vars)
 %PLAN_MOTION Summary of this function goes here
 
 % I. Pick navigation target
-lookahead = 1;
+lookahead = 0.5;
 target = get_target(read_only_vars.mocap_pose, public_vars.path, lookahead);
 if size(target) > 0
-    plot(target(1), target(2), 'bo', 'MarkerSize',8, 'MarkerFaceColor','b')
+    % plot(target(1), target(2), 'bo', 'MarkerSize',8, 'MarkerFaceColor','b')
     public_vars.motion_vector = [0, 0];
     
     
