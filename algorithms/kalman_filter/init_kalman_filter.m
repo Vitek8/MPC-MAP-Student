@@ -10,9 +10,9 @@ public_vars.kf.C = [1 0 0;
 
 % process noise R - n * n - 3x3
 public_vars.kf.R = diag([
-    0.0001
-    0.0001
-    0.0001
+    0.00005
+    0.00005
+    0.00005
 ]);
 
 % measurement noise Q - k * k - 2x2
