@@ -1,4 +1,4 @@
-function [mu, sigma, public_vars] = update_kalman_filter(read_only_vars, public_vars)
+function [mu, sigma] = update_kalman_filter(read_only_vars, public_vars)
 %UPDATE_KALMAN_FILTER Summary of this function goes here
 
 mu = public_vars.mu;
@@ -17,9 +17,6 @@ u = [v omega];
 % II. Measurement
 z = read_only_vars.gnss_position';
 [mu, sigma] = kf_measure(mu, sigma, z, public_vars.kf);
-public_vars.kalman_pose = mu;
-
-plot(mu(1), mu(2), 'b', 'LineWidth', 2);
 
 end
 
