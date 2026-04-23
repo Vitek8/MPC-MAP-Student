@@ -5,4 +5,4 @@
 # mdBook
 book/
 *.asv
-algorithms/report/assignment_2/data/*.mat
+algorithms/report/week_3/data/*.mat
