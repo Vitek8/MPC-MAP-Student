@@ -80,8 +80,6 @@ end
 clear ax ay cx cy i xs ys pgon start_position;
 
 w = waitforbuttonpress;
-delete algorithms\report\assignment_2\data\index.mat
-delete algorithms\report\assignment_2\data\angle.mat
 
 while true
     
