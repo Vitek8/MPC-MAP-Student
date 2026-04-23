@@ -10,9 +10,9 @@ public_vars.kf.C = [1 0 0;
 
 % process noise R - n * n - 3x3
 public_vars.kf.R = diag([
-    0.01
-    0.01
-    0.01
+    0.0001
+    0.0001
+    0.0001
 ]);
 
 % measurement noise Q - k * k - 2x2
@@ -21,13 +21,9 @@ public_vars.kf.Q = diag([
     public_vars.gnss_sigma(2)^2
 ]);
 
-
 z0 = read_only_vars.gnss_position();
 public_vars.mu = [z0, 0];
 public_vars.sigma = diag([1, 1, pi^2]);
-
-public_vars.mu_history = [];
-public_vars.gt_history = [];
 
 end
 
