@@ -8,14 +8,11 @@ function [public_vars] = init_kalman_filter(read_only_vars, public_vars)
 public_vars.kf.C = [1 0 0;
                     0 1 0];
 
-R_value = 0.00007;
-R_value = 0.000095;
-R_value = 0.000105;
 % process noise R - n * n - 3x3
 public_vars.kf.R = diag([
-    R_value
-    R_value
-    R_value
+    0.000105
+    0.000105
+    0.000105
 ]);
 
 % measurement noise Q - k * k - 2x2
