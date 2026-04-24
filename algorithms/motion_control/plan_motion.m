@@ -1,11 +1,11 @@
-function [public_vars, index] = plan_motion(read_only_vars, public_vars, last_index)
+function [public_vars] = plan_motion(read_only_vars, public_vars)
 %PLAN_MOTION Summary of this function goes here
 
 % I. Pick navigation target
 lookahead = 0.5;
-est_pos = public_vars.estimated_pose;
-[target, index] = get_target(est_pos, public_vars.path, lookahead, last_index);
-plot(target(1), target(2), 'bo', 'MarkerSize',8, 'MarkerFaceColor','b')
+est_pos = read_only_vars.mocap_pose;
+[target, public_vars] = get_target(est_pos, public_vars.path, lookahead, public_vars);
+% plot(target(1), target(2), 'bo', 'MarkerSize',8, 'MarkerFaceColor','b')
 if size(target) > 0
     public_vars.motion_vector = [0, 0];
     
