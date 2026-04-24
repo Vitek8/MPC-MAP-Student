@@ -7,7 +7,7 @@ gnss_tmp = gnss_count + 1;
 if read_only_vars.counter == 1
 
     public_vars.path = plan_path(read_only_vars, public_vars);
-    public_vars.last_index = 10;
+    public_vars.get_target_index = 1;
 
 
 elseif read_only_vars.counter < gnss_tmp
@@ -25,6 +25,6 @@ else
 
     [public_vars.mu, public_vars.sigma] = update_kalman_filter(read_only_vars, public_vars);
     public_vars.estimated_pose = estimate_pose(public_vars);
-    [public_vars, public_vars.last_index] = plan_motion(read_only_vars, public_vars, public_vars.last_index);
+    public_vars = plan_motion(read_only_vars, public_vars);
 
 end
