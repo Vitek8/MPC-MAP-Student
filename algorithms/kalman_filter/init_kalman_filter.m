@@ -8,11 +8,14 @@ function [public_vars] = init_kalman_filter(read_only_vars, public_vars)
 public_vars.kf.C = [1 0 0;
                     0 1 0];
 
+R_value = 0.00007;
+R_value = 0.000095;
+R_value = 0.000105;
 % process noise R - n * n - 3x3
 public_vars.kf.R = diag([
-    0.00005
-    0.00005
-    0.00005
+    R_value
+    R_value
+    R_value
 ]);
 
 % measurement noise Q - k * k - 2x2
@@ -21,9 +24,13 @@ public_vars.kf.Q = diag([
     public_vars.gnss_sigma(2)^2
 ]);
 
-z0 = read_only_vars.gnss_position();
-public_vars.mu = [z0, 0];
-public_vars.sigma = diag([1, 1, pi^2]);
+
+z0 =  mean(read_only_vars.gnss_history);
+public_vars.mu = [z0, 2*pi*rand()];
+public_vars.sigma = diag([0.25, 0.25, 2*pi]);
+
+% public_vars.mu = [2, 2, pi/2];
+% public_vars.sigma = diag([0, 0, 0]);
 
 end
 
