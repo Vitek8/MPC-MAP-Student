@@ -37,11 +37,11 @@ end
     n1 = 70; 
     n2 = 30;  
     
-    x1 = linspace(start_position(1), 7, n1);
-    y1 = linspace(start_position(2), 10, n1);
+    x1 = linspace(start_position(1), 7.5, n1);
+    y1 = linspace(start_position(2), 14, n1);
     
-    freq = 2;
-    amp = 0.5;
+    freq = 1;
+    amp = 2;
     
     x2 = linspace(x1(end), goal_position(1) + 0.2, n2);
     y2_base = linspace(y1(end), goal_position(2), n2);
