@@ -1,10 +1,5 @@
-function h = heuristic(a, b)
-% Calculate the distance between two points using Euclidean distance
-
-dx = a(1) - b(1);
-dy = a(2) - b(2);
-
+function h = heuristic(a, goal)
+dx = a(2) - goal(2);
+dy = a(1) - goal(1);
 h = sqrt(dx^2 + dy^2);
-
 end
-

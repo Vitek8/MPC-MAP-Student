@@ -1,33 +1,39 @@
-function [new_g, new_nodes] = check_neighbours(g, index, map, visited)
-    new_g = g;
+function new_nodes = check_neighbours(index, map)
 
-    neighbors = [
-        0 1;
-        1 0;
-        0 -1;
-        -1 0;
-    ];
-    new_nodes = [];
-    count = 1;
-    for i = 1:size(neighbors,1)
+neighbors = [
+    0 1;
+    1 0;
+    0 -1;
+    -1 0;
+    1 1;
+    -1 -1;
+    1 -1;
+    -1 1;
+];
 
-        ny = index(1) + neighbors(i,1);
-        nx = index(2) + neighbors(i,2);
-        
-        if ny < 1 || nx < 1 || ny > size(g,1) || nx > size(g,2)
-            continue;
-        end
+new_nodes = [];
 
-        if map(ny,nx) == 1
-            continue;
-        end
+for i = 1:size(neighbors,1)
 
-        if visited(ny,nx)
-            continue;
-        end
-        
-        new_g(ny,nx) = g(index(1), index(2)) + 1;
-        new_nodes(count, :) = [ny, nx]; 
-        count = count + 1;
+    nx = index(1) + neighbors(i,1);
+    ny = index(2) + neighbors(i,2);
+
+    if nx < 1 || ny < 1 || nx > size(map,1) || ny > size(map,2)
+        continue;
     end
+
+    if map(nx, ny) == 1
+        continue;
+    end
+
+    % corner fix
+    if abs(neighbors(i,1)) == 1 && abs(neighbors(i,2)) == 1
+        if map(index(1), ny) == 1 || map(nx, index(2)) == 1
+            continue;
+        end
+    end
+
+    new_nodes = [new_nodes; nx ny];
+end
+
 end

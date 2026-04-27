@@ -79,10 +79,10 @@ end
 
 clear ax ay cx cy i xs ys pgon start_position;
 
-w = waitforbuttonpress;
+% w = waitforbuttonpress;
 
 while true
-    
+    warning('off', 'all')
     % 1. Check if goal has been reached
     if is_in_goal(private_vars, read_only_vars)
         disp('You WIN! GG!!!')
@@ -133,5 +133,5 @@ while true
     
     % 16. Increment counter
     read_only_vars.counter = read_only_vars.counter + 1;
-   
+    break;
 end
