@@ -4,10 +4,10 @@ radius = 2;
 [x,y] = meshgrid(-radius:radius, -radius:radius);
 kernel = (x.^2 + y.^2) <= radius^2;
 % kernel = ones(2*radius+1);
+new_map = conv2(double(map), double(kernel), 'same') > 0;
 
 %% kod pro vizualizaci konvoluce (znázornuně mapu před a po konvoluci v dokumentaci obrázek 2)
-% new_map = conv2(double(map), double(kernel), 'same') > 0;
-% 
+
 % conv_map = new_map / max(new_map(:));
 % 
 % orig = imresize(double(map), [420 560], 'nearest');
