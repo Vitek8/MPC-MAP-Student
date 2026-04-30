@@ -4,9 +4,7 @@ function path = plan_path(read_only_vars, public_vars)
 planning_required = 1;
 
 if planning_required
-    % read_only_vars.map = 1;
     map = map_convolution(double(read_only_vars.discrete_map.map));
-    % map = read_only_vars.discrete_map.map;
     path = astar(read_only_vars, public_vars, map);
     path = smooth_path(path);
     

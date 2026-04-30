@@ -133,5 +133,5 @@ while true
     
     % 16. Increment counter
     read_only_vars.counter = read_only_vars.counter + 1;
-    break;
+
 end

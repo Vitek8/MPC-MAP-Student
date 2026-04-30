@@ -23,11 +23,8 @@ public_vars.kf.Q = diag([
 
 
 z0 =  mean(read_only_vars.gnss_history);
-public_vars.mu = [z0, 2*pi*rand()];
-public_vars.sigma = diag([0.25, 0.25, 2*pi]);
-
-% public_vars.mu = [2, 2, pi/2];
-% public_vars.sigma = diag([0, 0, 0]);
+public_vars.kf.mu = [z0, 2*pi*rand()];
+public_vars.kf.sigma = diag([0.25, 0.25, 2*pi]);
 
 end
 

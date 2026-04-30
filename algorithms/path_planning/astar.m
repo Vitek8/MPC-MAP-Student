@@ -2,7 +2,7 @@ function [path] = astar(read_only_vars, public_vars, map)
 map = map';
 map_step = read_only_vars.map.discretization_step;
 
-start = [2, 2];                     
+start = public_vars.estimated_pose(1:2);                     
 goal  = read_only_vars.map.goal;   
 
 start_idx = floor(start / map_step) + 1; 

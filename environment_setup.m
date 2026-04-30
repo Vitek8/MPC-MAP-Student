@@ -7,4 +7,4 @@ addpath algorithms/particle_filter/;
 addpath algorithms/kalman_filter/;
 addpath algorithms/path_planning/;
 addpath algorithms/report/week_2/program;
-
+addpath algorithms/report/project/program;
