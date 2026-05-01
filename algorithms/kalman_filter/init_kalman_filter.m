@@ -1,30 +1,36 @@
 function [public_vars] = init_kalman_filter(read_only_vars, public_vars)
 %INIT_KALMAN_FILTER Summary of this function goes here
+if size(public_vars.gnss_history, 1) == 100
 
-% n - state vector - 3x1
-% k - measurement vector - 2x1
-
-% measurement model - k * n - 2x3
-public_vars.kf.C = [1 0 0;
-                    0 1 0];
-
-% process noise R - n * n - 3x3
-public_vars.kf.R = diag([
-    0.000105
-    0.000105
-    0.000105
-]);
-
-% measurement noise Q - k * k - 2x2
-public_vars.kf.Q = diag([
-    public_vars.gnss_sigma(1)^2
-    public_vars.gnss_sigma(2)^2
-]);
-
-
-z0 =  mean(read_only_vars.gnss_history);
-public_vars.kf.mu = [z0, 2*pi*rand()];
-public_vars.kf.sigma = diag([0.25, 0.25, 2*pi]);
-
+    gnss = public_vars.gnss_history - mean(public_vars.gnss_history);
+    public_vars.gnss_sigma = std(gnss);
+    public_vars.gnss_covariance = cov(gnss);
+    
+    % n - state vector - 3x1
+    % k - measurement vector - 2x1
+    
+    % measurement model - k * n - 2x3
+    public_vars.kf.C = [1 0 0;
+                        0 1 0];
+    
+    % process noise R - n * n - 3x3
+    public_vars.kf.R = diag([
+        0.000105
+        0.000105
+        0.000105
+    ]);
+    
+    % measurement noise Q - k * k - 2x2
+    public_vars.kf.Q = diag([
+        public_vars.gnss_sigma(1)^2
+        public_vars.gnss_sigma(2)^2
+    ]);
+    
+    
+    z0 =  mean(public_vars.gnss_history);
+    public_vars.kf.mu = [z0, 2*pi*rand()];
+    public_vars.kf.sigma = diag([0.25, 0.25, 2*pi]);    
+    public_vars.kf_initialized = true;
+end
 end
 
