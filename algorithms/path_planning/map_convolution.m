@@ -1,6 +1,5 @@
-function new_map = map_convolution(map)
+function new_map = map_convolution(map, radius)
 
-radius = 2;
 [x,y] = meshgrid(-radius:radius, -radius:radius);
 kernel = (x.^2 + y.^2) <= radius^2;
 % kernel = ones(2*radius+1);
