@@ -1,6 +1,7 @@
 function public_vars = simple_lidar_control(read_only_vars, public_vars)
 
 lidar = read_only_vars.lidar_distances;
+lidar(isinf(lidar)) = 20;
 wheel_distance = read_only_vars.agent_drive.interwheel_dist;
 
 front = lidar(1);
@@ -8,7 +9,7 @@ left  = mean(lidar(2:3));
 right = mean(lidar(7:8));
 
 v = 0.3;
-k_turn = 0.3;
+k_turn = 0.1;
 d_stop = 0.5;
 
 error = left - right;
