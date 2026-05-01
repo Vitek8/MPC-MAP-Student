@@ -8,6 +8,16 @@ goal  = read_only_vars.map.goal;
 start_idx = floor(start / map_step) + 1; 
 goal_idx  = floor(goal  / map_step) + 1;
 
+assert(all(start_idx >= 1) && all(start_idx <= size(map)), 'Start mimo mapu');
+assert(all(goal_idx  >= 1) && all(goal_idx  <= size(map)), 'Goal mimo mapu');
+
+if map(start_idx(1), start_idx(2)) == 1
+    error('Start je v překážce!');
+end
+if map(goal_idx(1), goal_idx(2)) == 1
+    error('Goal je v překážce!');
+end
+
 g = inf(size(map));
 g(start_idx(1), start_idx(2)) = 0;
 
@@ -15,6 +25,8 @@ visited = false(size(map));
 parent = zeros([size(map), 2]);
 
 open_list = start_idx;
+
+found = false;
 
 while ~isempty(open_list)
 
@@ -56,11 +68,20 @@ while ~isempty(open_list)
     end
 end
 
+if ~found
+    error('Cesta nebyla nalezena');
+end
+
 path = goal_idx;
 current = goal_idx;
 
 while ~isequal(current, start_idx)
     p = squeeze(parent(current(1), current(2), :))';
+
+    if all(p == 0)
+        error('Rekonstrukce selhala – parent = [0 0]');
+    end
+
     current = p;
     path = [current; path];
 end
@@ -68,4 +89,3 @@ end
 path = (path - 1) * map_step;
 
 end
-
