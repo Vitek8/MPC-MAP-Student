@@ -41,6 +41,7 @@ while ~isempty(open_list)
     open_list(idx,:) = [];
 
     if isequal(current, goal_idx)
+        found = true;
         break;
     end
 
