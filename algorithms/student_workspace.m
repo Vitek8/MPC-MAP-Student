@@ -66,7 +66,7 @@ if public_vars.pf_initialized || public_vars.kf_initialized
     elseif ~gnss_ok
         public_vars.pf_enabled = 1;
         public_vars.kf_enabled = 0;
-        public_vars = update_particle_filter(read_only_vars, public_vars, lidar);
+        public_vars = update_particle_filter(read_only_vars, public_vars);
         public_vars.estimated_pose = estimate_pose(public_vars); 
         public_vars.kf.mu = public_vars.estimated_pose;
         public_vars.kf.sigma = diag([0.1, 0.1, 5*pi/180]);
