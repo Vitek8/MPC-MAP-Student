@@ -8,9 +8,9 @@ front = lidar(1);
 left  = mean(lidar(2:3));
 right = mean(lidar(7:8));
 
-v = 0.3;
-k_turn = 0.1;
-d_stop = 0.5;
+v = 0.5;
+k_turn = 0.6;
+d_stop = 1;
 
 error = left - right;
 omega = k_turn * error;
