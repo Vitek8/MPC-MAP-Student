@@ -11,9 +11,6 @@ goal_idx  = floor(goal  / map_step) + 1;
 assert(all(start_idx >= 1) && all(start_idx <= size(map)), 'Start mimo mapu');
 assert(all(goal_idx  >= 1) && all(goal_idx  <= size(map)), 'Goal mimo mapu');
 
-if map(start_idx(1), start_idx(2)) == 1
-    error('Start je v překážce!');
-end
 if map(goal_idx(1), goal_idx(2)) == 1
     error('Goal je v překážce!');
 end
