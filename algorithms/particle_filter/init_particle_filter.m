@@ -11,8 +11,5 @@ public_vars.particles(:, 2) = rand(N,1) * (map_y2 - map_y1) + map_y1;
 public_vars.particles(:, 3) = rand(N,1) * 2*pi;
 public_vars.weights = ones(N, 1) / N;
 
-public_vars.motion_sigma = 0.75;
-public_vars.sensor_sigma = 4;
-
 end
 

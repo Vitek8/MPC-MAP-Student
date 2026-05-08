@@ -24,6 +24,10 @@ if read_only_vars.counter == 1
     
     public_vars.gnns_counter = 1;
     public_vars.map_conv_radius = 3;
+    
+    public_vars.motion_sigma = 0.75;
+    public_vars.sensor_sigma = 4;
+
 end
 
 %% --- INIT KF ---
