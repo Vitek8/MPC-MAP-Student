@@ -23,10 +23,12 @@ if read_only_vars.counter == 1
     public_vars.prev_gnss_ok = false;
     
     public_vars.gnns_counter = 1;
-    public_vars.map_conv_radius = 3;
+
+    public_vars.motion_sigma = [0.05; 0.1];
+    public_vars.sensor_sigma = 2.5;
     
-    public_vars.motion_sigma = 0.75;
-    public_vars.sensor_sigma = 4;
+    public_vars.target.prev_angle = 0;
+    public_vars.actual.prev_angle = 0;
 
 end
 
@@ -64,7 +66,6 @@ if public_vars.pf_initialized || public_vars.kf_initialized
        public_vars.kf_enabled = 1;
        public_vars = update_kalman_filter(read_only_vars, public_vars);
        public_vars.estimated_pose = estimate_pose(public_vars);
-       public_vars.last_known_position = public_vars.estimated_pose;
        public_vars.plan_motion = true; 
     
     elseif ~gnss_ok
@@ -75,8 +76,10 @@ if public_vars.pf_initialized || public_vars.kf_initialized
         public_vars.kf.mu = public_vars.estimated_pose;
         public_vars.kf.sigma = diag([0.1, 0.1, 5*pi/180]);
 
-        if public_vars.pf.sigma < 0.5
+        if public_vars.pf.sigma < 0.4
             public_vars.plan_motion = true;
+            public_vars.motion_sigma = [0.05; 0.1];
+            public_vars.sensor_sigma = 0.2;
         else
             public_vars = simple_lidar_control(read_only_vars, public_vars);      
         end
