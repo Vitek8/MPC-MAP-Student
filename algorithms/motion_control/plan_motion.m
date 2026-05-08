@@ -17,15 +17,16 @@ if size(target) > 0
     y = est_pos(2);
     dx = target(1) - x;
     dy = target(2) - y;
+    theta = est_pos(3);
+
+    theta = wrap_correction(theta, public_vars.actual.prev_angle);
+    public_vars.actual.prev_angle = theta;
+       
+    target_angle = atan2(dy, dx);   
+    target_angle = wrap_correction(target_angle, public_vars.target.prev_angle);
+    public_vars.target.prev_angle = target_angle;
     
-    theta = mod(est_pos(3) + pi, 2*pi) - pi;
-    target_angle = atan2(dy, dx);
     angle_error = target_angle - theta;
-    
-    % pi/36 rad = 5 deg
-    if abs(angle_error) < pi/36    
-        angle_error = 0;
-    end
     
     v_max = read_only_vars.agent_drive.max_vel;
     v_min = -read_only_vars.agent_drive.max_vel;
@@ -36,7 +37,10 @@ if size(target) > 0
     v = max(min(v,  v_max), v_min);
     
     v_left = v - (omega_setpoint * wheel_distance)/ 2;
+    v_left = max(min(v_left,  v_max), v_min);
+    
     v_right = v + (omega_setpoint * wheel_distance) / 2;
+    v_right = max(min(v_right,  v_max), v_min);
 
     public_vars.motion_vector = [v_right, v_left];
 end
