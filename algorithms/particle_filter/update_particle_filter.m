@@ -21,9 +21,9 @@ public_vars.weights = weight_particles(measurements, lidar, public_vars.sensor_s
 Neff = 1 / sum(public_vars.weights.^2);
 particles = resample_particles(particles, public_vars.weights);
 if Neff < N/2
-    particles(:,1) = particles(:,1) + 0.05 * randn(size(particles,1),1);
-    particles(:,2) = particles(:,2) + 0.05 * randn(size(particles,1),1);
-    particles(:,3) = particles(:,3) + 0.05 * randn(size(particles,1),1);
+    particles(:,1) = particles(:,1) + 0.08 * randn(size(particles,1),1);
+    particles(:,2) = particles(:,2) + 0.08 * randn(size(particles,1),1);
+    particles(:,3) = particles(:,3) + 0.08 * randn(size(particles,1),1);
 end
 
 % IV. Pose estimation
