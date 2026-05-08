@@ -1,8 +1,13 @@
-function new_map = map_convolution(map, radius)
-
+function new_map = map_convolution(map)
+radius = 1;
 [x,y] = meshgrid(-radius:radius, -radius:radius);
 kernel = (x.^2 + y.^2) <= radius^2;
 % kernel = ones(2*radius+1);
+kernel = [
+0 1 1 1 0
+1 1 1 1 1
+0 1 1 1 0
+];
 new_map = conv2(double(map), double(kernel), 'same') > 0;
 
 %% kod pro vizualizaci konvoluce (znázornuně mapu před a po konvoluci v dokumentaci obrázek 2)
